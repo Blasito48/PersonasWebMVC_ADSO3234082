@@ -1,0 +1,25 @@
+﻿@*Agregro el modelo que usare
+ input asp-for="nombre getset modelo"
+ form asp-action="accion o ruta del controlador" asp-controller="nombre contolador" method="metodo post/get/put/delete"
+*@
+
+@model PersonasModel
+@{
+
+    <form asp-action="GuardarPersona" asp-controller="Personas" method="post">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">ID</label>
+            <input asp-for="id" class="form-control" id="exampleFormControlInput1" placeholder="12345">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Nombre</label>
+            <input asp-for="Nombre" class="form-control" id="exampleFormControlTextarea1" rows="3">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Telefono</label>
+            <input asp-for="Telefono" class="form-control" id="exampleFormControlTextarea1" rows="3">
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+
+    </form>
+}

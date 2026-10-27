@@ -1,0 +1,27 @@
+﻿@model List<PersonasModel>
+@{
+    <a asp-controller="Personas" asp-action="Agregar" class="btn btn-primary">Nueva Peersona</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Telefono</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.id</td>
+                    <td>@item.Nombre</td>
+                    <td>@item.Telefono</td>
+                    <td>
+                        <a asp-action="Editar" asp-controller="Personas" class="btn btn-primary btn-sm" asp-route-ID="@item.id">Editar</a>
+                        <a asp-action="EliminarPersona" asp-controller="Personas" class="btn btn-danger btn-sm" asp-route-ID="@item.id">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
