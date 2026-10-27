@@ -7,7 +7,9 @@ namespace PersonasWebMVC.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            List<PersonasModel> lista = new List<PersonasModel>();
+            lista = Models.ClaseFunciiones.Func_TraerDatos();
+            return View(lista);
         }
         public IActionResult Agregar()
         {
