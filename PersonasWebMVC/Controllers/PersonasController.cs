@@ -35,13 +35,16 @@ namespace PersonasWebMVC.Controllers
         [HttpGet]
         public IActionResult EliminarPersona(long id)
         {
-            //llamar seetalrt
+            //llamar
+            TempData["Mensaje"] = "Persona Elininada";
+            TempData["ID"] = id.ToString();
+            RedirectToAction("Index");
             if (Models.ClaseFunciiones.Func_Eliminar(id))
             {
                 //llamar seetalrt
                 return RedirectToAction("Index");
             }
-            return View();
+            return RedirectToAction("Index");
         }
     }
 }

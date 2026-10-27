@@ -1,6 +1,7 @@
 ﻿@model List<PersonasModel>
 @{
     <a asp-controller="Personas" asp-action="Agregar" class="btn btn-primary">Nueva Peersona</a>
+
     <table class="table">
         <thead>
             <tr>
@@ -24,4 +25,27 @@
             }
         </tbody>
     </table>
+}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (TempData["Mensaje"] != null)
+{
+    <script>
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed)
+                window.Location.href = "Persona/EliminarPersona?ID=" + @TempData["ID"];
+            Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+            });
+        });
+    </script>
 }
