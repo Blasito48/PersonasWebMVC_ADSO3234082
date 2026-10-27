@@ -31,5 +31,17 @@ namespace PersonasWebMVC.Controllers
             }
             
         }
+
+        [HttpGet]
+        public IActionResult EliminarPersona(long id)
+        {
+            //llamar seetalrt
+            if (Models.ClaseFunciiones.Func_Eliminar(id))
+            {
+                //llamar seetalrt
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
     }
 }

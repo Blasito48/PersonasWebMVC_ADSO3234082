@@ -55,5 +55,24 @@ namespace PersonasWebMVC.Models
                 return false;
             }
         }
+        public static bool Func_Eliminar(long ID)
+        {
+            try
+            {
+                SqlConnection cnn = new SqlConnection(cadena);
+                SqlCommand cmd = new SqlCommand("PA_EliminarPersona", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id", ID);
+                cnn.Open();
+                cmd.ExecuteNonQuery();
+                cnn.Close();
+                return true;
+            }
+            catch (Exception e)
+            {
+                excepcion = e.ToString();
+                return false;
+            }
+        }
     }
 }
