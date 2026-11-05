@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Data;
+using System.Xml.Linq;
 namespace PersonasWebMVC.Models
 {
     public class ClaseFunciiones
@@ -35,6 +36,34 @@ namespace PersonasWebMVC.Models
                 return list;
             }
         }
+        public static PersonasModel Func_Traer1Persona(long id)
+        {
+            PersonasModel model = new PersonasModel();
+            try
+            {
+                SqlConnection cnn = new SqlConnection(cadena);
+                SqlCommand cmd = new SqlCommand("PA_Traer1Persona", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id", id);
+                cnn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    
+                    model.id = Convert.ToInt64(dr["ID"].ToString());
+                    model.Nombre = dr["Nombre"].ToString();
+                    model.Telefono = dr["Telefono"].ToString();
+    
+                }
+                cnn.Close();
+                return model;
+            }
+            catch (Exception e)
+            {
+                excepcion = e.ToString();
+                return model;
+            }
+        }
         public static bool Func_Insertar(string name, string tel)
         {
             try
@@ -42,6 +71,27 @@ namespace PersonasWebMVC.Models
                 SqlConnection cnn = new SqlConnection(cadena);
                 SqlCommand cmd = new SqlCommand("PA_InsertarPersona", cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@nom", name);
+                cmd.Parameters.AddWithValue("@tel", tel);
+                cnn.Open();
+                cmd.ExecuteNonQuery();
+                cnn.Close();
+                return true;
+            }
+            catch (Exception e)
+            {
+                excepcion = e.ToString();
+                return false;
+            }
+        }
+        public static bool Func_Editar(long id, string name, string tel)
+        {
+            try
+            {
+                SqlConnection cnn = new SqlConnection(cadena);
+                SqlCommand cmd = new SqlCommand("PA_EditarPersona", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id", id);
                 cmd.Parameters.AddWithValue("@nom", name);
                 cmd.Parameters.AddWithValue("@tel", tel);
                 cnn.Open();

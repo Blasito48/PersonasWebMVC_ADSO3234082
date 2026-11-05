@@ -18,7 +18,7 @@
                     <td>@item.Nombre</td>
                     <td>@item.Telefono</td>
                     <td>
-                        <a asp-action="Editar" asp-controller="Personas" class="btn btn-primary btn-sm" asp-route-ID="@item.id">Editar</a>
+                        <a asp-action="EditarPersona" asp-controller="Personas" class="btn btn-primary btn-sm" asp-route-ID="@item.id">Editar</a>
                         <a asp-action="EliminarPersona" asp-controller="Personas" class="btn btn-danger btn-sm" asp-route-ID="@item.id">Eliminar</a>
                     </td>
                 </tr>
